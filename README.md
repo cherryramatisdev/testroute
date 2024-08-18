@@ -22,3 +22,7 @@ testroute
 ```
 > Please test your route at: http://localhost:9999/api/user/4
 ```
+
+## Future plans
+
+- [ ] Support template like route syntax (For example: `/api/user/[id]`)
