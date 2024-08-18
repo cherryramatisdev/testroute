@@ -74,8 +74,14 @@ async fn main() {
 }
 
 async fn handler(response_path: String, response_status: u16) -> impl IntoResponse {
+    let response = if response_path.len() > 0 {
+        serde_json::from_str::<Value>(&fs::read_to_string(response_path).unwrap()).unwrap()
+    } else {
+        serde_json::Value::String("".to_string())
+    };
+
     (
         StatusCode::from_u16(response_status).unwrap(),
-        Json(serde_json::from_str::<Value>(&fs::read_to_string(response_path).unwrap()).unwrap()),
+        Json(response),
     )
 }
