@@ -10,7 +10,7 @@ use axum::{
 };
 use inquire::{Select, Text};
 use serde_json::Value;
-use std::{fs, str::FromStr};
+use std::{fs, str::FromStr, thread::sleep, time::Duration};
 use strum::VariantNames;
 use strum_macros::{EnumString, VariantNames};
 
@@ -51,9 +51,22 @@ async fn main() {
             .with_autocomplete(prompts::file_completion::FilePathCompleter::default())
             .prompt()
             .unwrap();
+    let delay = Text::new("There's any delay that you want on the route? (in seconds)")
+        .prompt()
+        .unwrap();
 
     let route_handler = || {
-        let handle = move || handler(http_response, http_response_status.parse::<u16>().unwrap());
+        let handle = move || {
+            handler(
+                http_response,
+                http_response_status.parse::<u16>().unwrap(),
+                if delay.len() > 0 {
+                    Some(delay.parse::<usize>().unwrap())
+                } else {
+                    None
+                },
+            )
+        };
 
         match HttpMethods::from_str(http_method).unwrap() {
             HttpMethods::GET => get(handle),
@@ -75,7 +88,15 @@ async fn main() {
     axum::serve(listener, app).await.unwrap();
 }
 
-async fn handler(response_path: String, response_status: u16) -> impl IntoResponse {
+async fn handler(
+    response_path: String,
+    response_status: u16,
+    delay: Option<usize>,
+) -> impl IntoResponse {
+    if let Some(d) = delay {
+        sleep(Duration::from_secs(d.try_into().unwrap()));
+    }
+
     let response = if response_path.len() > 0 {
         serde_json::from_str::<Value>(&fs::read_to_string(response_path).unwrap()).unwrap()
     } else {
