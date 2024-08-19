@@ -2,6 +2,11 @@
 name = "testroute"
 version = "0.1.0"
 edition = "2021"
+description = "Create an easy mock HTTP server with a route for your frontend or anything"
+license = "MIT"
+documentation = "https://github.com/cherryramatisdev/testroute"
+homepage = "https://github.com/cherryramatisdev/testroute"
+repository = "https://github.com/cherryramatisdev/testroute"
 
 [dependencies]
 axum = "0.7.5"
