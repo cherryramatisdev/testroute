@@ -5,7 +5,7 @@ use core::fmt;
 use axum::{
     http::StatusCode,
     response::IntoResponse,
-    routing::{delete, get, post, put},
+    routing::{delete, get, patch, post, put},
     Json, Router,
 };
 use inquire::{Select, Text};
@@ -19,6 +19,7 @@ enum HttpMethods {
     GET,
     POST,
     PUT,
+    PATCH,
     DELETE,
 }
 
@@ -59,6 +60,7 @@ async fn main() {
             HttpMethods::POST => post(handle),
             HttpMethods::PUT => put(handle),
             HttpMethods::DELETE => delete(handle),
+            HttpMethods::PATCH => patch(handle),
         }
     };
 
