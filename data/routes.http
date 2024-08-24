@@ -12,3 +12,9 @@ POST /bar 400
   "teste": 123,
   "message": "Hello World !@@!@!@@#!#!$$^#^%U&%$"
 }
+
+GET /api/user/:id 200
+
+{
+  "hello": true
+}
