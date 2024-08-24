@@ -22,9 +22,3 @@ testroute
 ```
 > Please test your route at: http://localhost:9999/api/user/4
 ```
-
-## Future plans
-
-- [ ] Support template like route syntax (For example: `/api/user/[id]`)
-- [ ] Support cli options to skip answering interactively (making easier to script)
-- [ ] Support file format for declaring multiple routes at the same time
