@@ -9,11 +9,32 @@ use axum::{
     routing::{delete, get, patch, post, put},
     Router,
 };
+use clap::Parser;
 use std::fs;
+
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    #[arg(short, long)]
+    path: Option<String>,
+
+    #[arg(short, long)]
+    method: Option<HttpMethods>,
+
+    #[arg(short, long)]
+    status: Option<u16>,
+
+    #[arg(short, long)]
+    response: Option<String>,
+
+    #[arg(short, long)]
+    delay: Option<String>,
+}
 
 #[tokio::main]
 async fn main() {
-    let requirements = ApplicationRequirements::get_from_user();
+    let args = Args::parse();
+    let requirements = ApplicationRequirements::get_from_user(args);
 
     let route_handler = || {
         let app = requirements.clone();

@@ -10,6 +10,7 @@ repository = "https://github.com/cherryramatisdev/testroute"
 
 [dependencies]
 axum = "0.7.5"
+clap = { version = "4.5.16", features = ["derive"] }
 inquire = "0.7.5"
 serde = "1.0.208"
 serde_json = "1.0.125"
