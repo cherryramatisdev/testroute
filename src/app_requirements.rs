@@ -7,7 +7,7 @@ use strum_macros::{EnumString, VariantNames};
 
 use crate::{prompts, Args};
 
-#[derive(Debug, EnumString, VariantNames, Clone)]
+#[derive(Debug, EnumString, VariantNames, Clone, Eq, PartialEq)]
 pub enum HttpMethods {
     GET,
     POST,
@@ -22,11 +22,12 @@ impl fmt::Display for HttpMethods {
     }
 }
 
-#[derive(Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub struct ApplicationRequirements {
     pub path: String,
     pub http_method: HttpMethods,
     pub http_response_status: u16,
+    pub http_response_body: Option<String>,
     pub http_response_path: Option<String>,
     pub delay: Option<usize>,
 }
@@ -80,6 +81,7 @@ impl ApplicationRequirements {
             path,
             http_method,
             http_response_status,
+            http_response_body: None,
             http_response_path: if http_response.len() > 0 {
                 Some(http_response)
             } else {
