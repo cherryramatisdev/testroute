@@ -1,6 +1,6 @@
 [package]
 name = "testroute"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Create an easy mock HTTP server with a route for your frontend or anything"
 license = "MIT"
