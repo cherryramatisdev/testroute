@@ -1,0 +1,14 @@
+GET /foo 200
+Delay=1
+
+{
+  "foo": true
+}
+
+POST /bar 400
+
+{
+  "bar": true,
+  "teste": 123,
+  "message": "Hello World !@@!@!@@#!#!$$^#^%U&%$"
+}
