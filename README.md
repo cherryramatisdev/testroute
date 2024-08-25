@@ -67,6 +67,40 @@ testroute
 
 </div>
 
+### HTTP file
+
+You can define a set of mock routes in a file and TestRoute will serve it to you.
+
+Create a `.http` file and copy the text below into it.
+
+```txt
+GET /foo 200
+Delay=1
+
+{
+  "foo": true
+}
+
+POST /bar 400
+
+{
+  "bar": true,
+  "message": "Back end with JS not allowed :p"
+}
+
+GET /api/users/:id 200
+
+{
+  "hello": "world!"
+}
+```
+
+Run this command:
+
+```sh
+testroute --import path/to/routes.http
+```
+
 ### Scripting
 
 Want to create an automation with TestRoute? You can!
