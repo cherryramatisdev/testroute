@@ -36,3 +36,81 @@ The server is up and ready to handle your requests!
 - Interactive-first, so you don't need to figure out arguments or flags right ahead
 - Batteries-included: set the http method, status code, response body, delay and wildcard route (e.g. `/user/:id`)
 - Highly configurable: you can create a set of mock routes one time and use it everywhere (not exactly how it works)
+
+## Usage
+
+First, you need to install TestRoute:
+
+```sh
+cargo install testroute
+```
+
+Installing it via Cargo is the only way now, but the prebuilt binaries are coming soon.
+
+### Getting started
+
+TestRoute aims to make your life easier by being friendly and on point.
+
+To start using it you just need to run the following command:
+
+```sh
+testroute
+```
+
+<div align="center">
+<br/>
+
+![TestRoute demonstration](.docs/demo-testroute.gif)
+
+</div>
+
+### Scripting
+
+Want to create an automation with TestRoute? You can!
+
+```sh
+testroute -h
+```
+
+###### Flags
+
+- `-p --path` to specify the route
+- `-m --method` to set the http method
+- `-s --status` to define the response status code
+- `-r --response` to specify the response body
+- `-d --delay` to simulate a latency (seconds)
+- `-i --import` to import the configuration file
+- `-h --help` to print the help menu
+- `-V --version` to print the version
+
+###### Examples
+
+Setting all the flags:
+
+```sh
+testroute -p /v1/users -m GET -s 200 -d 0 -r ""
+# testroute --path /v1/users --method GET --status 200 --delay 0 --response ""
+```
+
+Predefining route and method, finishing interactively:
+
+```sh
+testroute -p /v1/users -m GET
+```
+
+Executing a set of routes in a file:
+
+```sh
+testroute --import mock-routes.http
+```
+
+## Contributing
+
+Feel free to contribute, opening an issue to report a bug or suggesting a CLI change, an improvement or a new feature.
+
+### How to contribute
+
+1. Fork this repository
+2. Clone your fork on your machine
+3. Make your changes, commit and push them
+4. Open a pull request (write a descriptive message about what you changed)
