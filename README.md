@@ -38,7 +38,8 @@ Available routes:
 
 - Interactive-first, so you don't need to figure out arguments or flags right ahead
 - Batteries-included: set the http method, status code, response body, delay and wildcard route (e.g. `/user/:id`)
-- Highly configurable: you can create a set of mock routes one time and use it everywhere (not exactly how it works)
+- Highly configurable: you can create a set of mock routes one time and use it everywhere
+- Intuitive and friendly with prompt autocompletion
 
 ## Usage
 
