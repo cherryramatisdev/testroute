@@ -19,16 +19,19 @@ testroute
 You answer some questions:
 
 ```txt
-> What is the path of your route?: /api/user/4
-> What HTTP method should listen to?: GET
-> What should be the response HTTP status?: 200
-> What should be the response? (Write a file path or leave empty for none): ./response.json
+> What is the path of your route? /api/user/4
+> What HTTP method should listen to? GET
+> What should be the response HTTP status? 200
+> What should be the response? (Write a file path or leave empty for none) ./response.json
+> There's any delay that you want on the route? (in seconds) 5
 ```
 
 The server is up and ready to handle your requests!
 
 ```txt
-> Please test your route at: http://localhost:9999/api/user/4
+Server is running on http://localhost:9999
+Available routes:
+  GET /api/users/4 - Status: 200
 ```
 
 ## Features
@@ -88,14 +91,17 @@ testroute -h
 Setting all the flags:
 
 ```sh
-testroute -p /v1/users -m GET -s 200 -d 0 -r ""
-# testroute --path /v1/users --method GET --status 200 --delay 0 --response ""
+testroute -p /api/users -m GET -s 200 -d 0 -r ""
+# testroute --path /api/users --method GET --status 200 --delay 0 --response ""
 ```
 
 Predefining route and method, finishing interactively:
 
 ```sh
-testroute -p /v1/users -m GET
+testroute -p /api/users/:id -m GET
+
+# GET http://localhost:9999/api/users/1234 should work
+# and http://localhost:9999/api/users/whatever as well
 ```
 
 Executing a set of routes in a file:
